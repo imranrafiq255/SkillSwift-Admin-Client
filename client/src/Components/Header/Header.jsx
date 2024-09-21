@@ -107,25 +107,16 @@ const Header = () => {
                 : ""
             } nav-link cursor-pointer `}
           >
-            <Link to={"/"}>HOME</Link>
+            <Link to={"/"}>DISPUTES</Link>
           </div>
           <div
             className={`${
-              location.pathname === "/disputes"
+              location.pathname === "/refund"
                 ? " border-b-2 text-[#4e97fd] border-[#4e97fd] transition-all ease-linear duration-1000"
                 : ""
             } nav-link cursor-pointer `}
           >
-            <Link to={"/service-provider-post"}>DISPUTES</Link>
-          </div>
-          <div
-            className={`${
-              location.pathname === "/refunds"
-                ? " border-b-2 text-[#4e97fd] border-[#4e97fd] transition-all ease-linear duration-1000"
-                : ""
-            } nav-link cursor-pointer `}
-          >
-            <Link to={"/refunds"}>REFUNDS</Link>
+            <Link to={"/refund"}>REFUNDS</Link>
           </div>
           <div
             className={`${
@@ -134,7 +125,16 @@ const Header = () => {
                 : ""
             } nav-link cursor-pointer `}
           >
-            <Link to={"/service-provider-order"}>ORDERS</Link>
+            <Link to={"/order"}>ORDERS</Link>
+          </div>
+          <div
+            className={`${
+              location.pathname === "/accounts"
+                ? " border-b-2 text-[#4e97fd] border-[#4e97fd] transition-all ease-linear duration-1000"
+                : ""
+            } nav-link cursor-pointer `}
+          >
+            <Link to={"/accounts"}>ACCOUNTS</Link>
           </div>
         </div>
       </div>

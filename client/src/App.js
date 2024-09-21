@@ -13,10 +13,13 @@ import LoaderBars from "./Components/Loader/LoaderBars";
 import ForgotPassword from "./Components/ForgotPassword/FrogotPassword";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import SendEmail from "./Components/SendEmail/SendEmail.jsx";
+import Refund from "./Components/Refund/Refund.jsx";
+import Order from "./Components/Order/Order.jsx";
+import Accounts from "./Components/Accounts/Accounts.jsx";
 const App = () => {
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
-  const adminAuthenticatedRoutes = ["/"];
+  const adminAuthenticatedRoutes = ["/", "/refund", "/order"];
   const location = useLocation();
   useEffect(() => {
     const loadCurrentAdmin = async () => {
@@ -58,6 +61,24 @@ const App = () => {
         />
         <Route path="*" element={<Navigate to={"/sign-in"} />} />
         <Route path="/send-email" element={<SendEmail />} />
+        <Route
+          path="/refund"
+          element={
+            isAdminAuthenticated ? <Refund /> : <Navigate to={"/sign-in"} />
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            isAdminAuthenticated ? <Order /> : <Navigate to={"/sign-in"} />
+          }
+        />
+        <Route
+          path="/accounts"
+          element={
+            isAdminAuthenticated ? <Accounts /> : <Navigate to={"/sign-in"} />
+          }
+        />
       </Routes>
     </>
   );
