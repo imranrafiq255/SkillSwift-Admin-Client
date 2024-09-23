@@ -15,7 +15,6 @@ const SkeletonOrderLoader = () => {
             <div className="profile-pic-name flex items-center gap-8">
               <div className=" p-[2px] border-[1px]  rounded-full">
                 <Skeleton circle={true} width={60} height={60} />
-                {/* <Skeleton width={30} /> */}
               </div>
               <div>
                 <h1 className="xl:text-2xl lg:text-xl font-bold font-serif text-[#4e97fd]">

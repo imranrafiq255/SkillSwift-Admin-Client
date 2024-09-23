@@ -10,6 +10,7 @@ import {
   handleShowSuccessToast,
 } from "../ToastMessages/ToastMessage.js";
 import LoaderCircles from "../Loader/LoaderCircles";
+
 // Validation schema
 const validationSchema = Yup.object({
   adminEmail: Yup.string()
@@ -25,25 +26,18 @@ const SignIn = () => {
   const passwordRef = useRef();
   const [eyeToggler, setEyeToggler] = useState(false);
   const location = useLocation();
-  const toastMessage = location.state?.message || null;
+  const query = new URLSearchParams(location.search);
+  const toastMessage = query.get("message");
   const hasToastShown = useRef(false);
-  const eyeTogglerHandler = () => {
-    setEyeToggler((prevState) => !prevState);
-    passwordRef.current.type = eyeToggler ? "password" : "text";
-  };
   const dispatch = useDispatch();
+
   const { loading, error, message } = useSelector(
     (state) => state.signInReducer
   );
 
   const handleSubmit = async (values) => {
-    try {
-      dispatch(clearErrors());
-      dispatch(signInAction(values));
-      formik.resetForm();
-    } catch (err) {
-      console.log("Sign-in error: ", err);
-    }
+    dispatch(clearErrors());
+    dispatch(signInAction(values));
   };
 
   const formik = useFormik({
@@ -54,19 +48,30 @@ const SignIn = () => {
     validationSchema: validationSchema,
     onSubmit: handleSubmit,
   });
+
   useEffect(() => {
-    if (!loading && error) {
-      handleShowFailureToast(error);
-    } else if (!loading && message) {
-      navigate("/", { state: { message: message } });
+    if (!loading) {
+      if (error) {
+        handleShowFailureToast(error);
+      } else if (message) {
+        const encodedMessage = encodeURIComponent(message);
+        window.location.href = `/?message=${encodedMessage}`;
+      }
     }
   }, [loading, error, message, navigate]);
+
   useEffect(() => {
     if (toastMessage && !hasToastShown.current) {
       hasToastShown.current = true;
       handleShowSuccessToast(toastMessage);
     }
-  }, [toastMessage, hasToastShown]);
+  }, [toastMessage]);
+
+  const eyeTogglerHandler = () => {
+    setEyeToggler((prevState) => !prevState);
+    passwordRef.current.type = eyeToggler ? "password" : "text";
+  };
+
   return (
     <>
       <Toaster />
@@ -74,17 +79,14 @@ const SignIn = () => {
         <div className="left-side w-full lg:w-6/12 h-full flex justify-center items-center flex-col">
           <div className="sign-in-container w-10/12 sm:w-8/12 lg:w-6/12 h-2/4">
             <div className="line h-1 w-3 bg-[#4e97fd]"></div>
-            <div>
-              <h1 className="text-[#4e97fd] my-5 text-4xl font-bold">
-                Sign in
-              </h1>
-            </div>
+            <h1 className="text-[#4e97fd] my-5 text-4xl font-bold">Sign in</h1>
             <form
               onSubmit={formik.handleSubmit}
               className="sign-in-form bg-white w-full h-full"
             >
               <div className="email">
-                <label htmlFor="serviceProviderEmail">Your email</label> <br />
+                <label htmlFor="adminEmail">Your email</label>
+                <br />
                 <input
                   type="email"
                   id="adminEmail"
@@ -99,14 +101,15 @@ const SignIn = () => {
                   }`}
                   placeholder="Enter your email"
                 />
-                {formik.touched.adminEmail && formik.errors.adminEmail ? (
+                {formik.touched.adminEmail && formik.errors.adminEmail && (
                   <div className="text-red-500 text-sm">
                     {formik.errors.adminEmail}
                   </div>
-                ) : null}
+                )}
               </div>
               <div className="password mt-5 relative">
-                <label htmlFor="adminPassword">Password</label> <br />
+                <label htmlFor="adminPassword">Password</label>
+                <br />
                 <input
                   type={eyeToggler ? "text" : "password"}
                   id="adminPassword"
@@ -122,11 +125,12 @@ const SignIn = () => {
                   }`}
                   placeholder="Enter your password"
                 />
-                {formik.touched.adminPassword && formik.errors.adminPassword ? (
-                  <div className="text-red-500 text-sm">
-                    {formik.errors.adminPassword}
-                  </div>
-                ) : null}
+                {formik.touched.adminPassword &&
+                  formik.errors.adminPassword && (
+                    <div className="text-red-500 text-sm">
+                      {formik.errors.adminPassword}
+                    </div>
+                  )}
                 <img
                   src={
                     eyeToggler

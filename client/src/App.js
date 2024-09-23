@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Home from "./Components/Home/Home";
+import Dispute from "./Components/Dispute/Dispute.jsx";
 import SignIn from "./Components/SignIn/SignIn";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -19,7 +19,7 @@ import Accounts from "./Components/Accounts/Accounts.jsx";
 const App = () => {
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
-  const adminAuthenticatedRoutes = ["/", "/refund", "/order"];
+  const adminAuthenticatedRoutes = ["/", "/refund", "/order", "/accounts"];
   const location = useLocation();
   useEffect(() => {
     const loadCurrentAdmin = async () => {
@@ -36,7 +36,7 @@ const App = () => {
       }
     };
     loadCurrentAdmin();
-  }, []);
+  });
   if (adminLoading && adminAuthenticatedRoutes.includes(location.pathname)) {
     return (
       <div className="w-screen h-screen flex justify-center items-center">
@@ -50,7 +50,7 @@ const App = () => {
         <Route
           path="/"
           element={
-            isAdminAuthenticated ? <Home /> : <Navigate to={"/sign-in"} />
+            isAdminAuthenticated ? <Dispute /> : <Navigate to={"/sign-in"} />
           }
         />
         <Route path="/sign-in" element={<SignIn />} />

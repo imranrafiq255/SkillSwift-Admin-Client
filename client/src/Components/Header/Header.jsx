@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, loadCurrentAdminAction } from "../Redux/Actions/Actions";
+import {
+  adminSignOutAction,
+  clearErrors,
+  loadCurrentAdminAction,
+} from "../Redux/Actions/Actions";
 import Skeleton from "react-loading-skeleton";
+import { handleShowFailureToast } from "../ToastMessages/ToastMessage";
 const Header = () => {
   const [showing, setShowing] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const [isShowingOptions, setShowingOptions] = useState(false);
   const toggleSidebar = () => {
     setShowing((prevShowing) => {
@@ -19,6 +25,9 @@ const Header = () => {
   const { adminLoading, adminData } = useSelector(
     (state) => state.loadCurrentAdminReducer
   );
+  const { signOutLoading, signOutError, signOutMessage } = useSelector(
+    (state) => state.adminSignOutReducer
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     return () => {
@@ -29,8 +38,18 @@ const Header = () => {
     dispatch(clearErrors());
     dispatch(loadCurrentAdminAction());
   }, [dispatch]);
-  console.log(adminData);
-
+  useEffect(() => {
+    if (!signOutLoading && signOutError) {
+      handleShowFailureToast(signOutError);
+    } else if (!signOutLoading && signOutMessage) {
+      const encodedMessage = encodeURIComponent(signOutMessage);
+      window.location.href = `/sign-in?message=${encodedMessage}`;
+    }
+  }, [dispatch, signOutError, signOutLoading, signOutMessage, navigate]);
+  const handleSignOut = () => {
+    dispatch(clearErrors());
+    dispatch(adminSignOutAction());
+  };
   return (
     <>
       <div
@@ -83,10 +102,18 @@ const Header = () => {
                   {isShowingOptions ? (
                     <div className="relative">
                       <div className="w-40 h-28 bg-slate-600 absolute top-2 right-4 rounded-lg flex flex-col justify-center items-center gap-3">
-                        <button className="bg-white w-[80%] h-9 rounded-lg">
+                        <button
+                          className="bg-white w-[80%] h-9 rounded-lg"
+                          onClick={() => {
+                            navigate("/sign-in");
+                          }}
+                        >
                           LOGIN
                         </button>
-                        <button className="bg-white w-[80%] h-9 rounded-lg">
+                        <button
+                          className="bg-white w-[80%] h-9 rounded-lg"
+                          onClick={handleSignOut}
+                        >
                           SignOut
                         </button>
                       </div>
