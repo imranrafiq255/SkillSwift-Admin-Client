@@ -181,89 +181,56 @@ const Header = () => {
               />
             </div>
           </div>
-          <div className="icons-container w-full flex justify-center items-center bg-white h-20 mt-10">
-            <div className="w-[70%] flex justify-between items-center">
-              <div className="relative">
-                <Link to={"/service-provider-chat-section"}>
-                  <img
-                    src={require("../../Assets/message.png")}
-                    alt=""
-                    className="w-5 h-5 cursor-pointer"
-                  />
-                </Link>
-                {false ? (
-                  <div className="dot w-2 h-2 bg-red-600 rounded-full absolute top-0 -right-1"></div>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="relative">
-                <Link to={"/service-provider-notification"}>
-                  <img
-                    src={require("../../Assets/notification.png")}
-                    alt=""
-                    className="w-5 h-5 cursor-pointer"
-                  />
-                </Link>
-                {false ? (
-                  <div className="dot w-2 h-2 bg-red-600 rounded-full absolute top-0 right-0"></div>
-                ) : (
-                  ""
-                )}
-              </div>
-              <Link to={"/service-provider-setting"}>
-                <img
-                  src={require("../../Assets/settings.png")}
-                  alt=""
-                  className="w-5 h-5 cursor-pointer hover:rotate-[180deg] transition-transform ease-in-out duration-700"
-                />
-              </Link>
-            </div>
-          </div>
           <div className="mobile-screen-navbar-container flex flex-col justify-evenly">
             <div
               className={`${
-                location.pathname === "/service-provider-home"
-                  ? "text-[#4e97fd]"
-                  : "text-white"
+                location.pathname === "/" ? "text-[#4e97fd]" : "text-white"
               } nav-link cursor-pointer h-14 flex items-center pl-8 my-10`}
             >
-              <Link
-                to={"/service-provider-home"}
-                className="text-3xl font-light"
-              >
-                HOME
+              <Link to={"/"} className="text-3xl font-light">
+                DISPUTE
               </Link>
             </div>
             <div className="line w-full h-[0.2px] bg-white"></div>
             <div
               className={`${
-                location.pathname === "/service-provider-post"
+                location.pathname === "/refund"
                   ? "text-[#4e97fd]"
                   : "text-white"
               } nav-link cursor-pointer h-14 flex items-center pl-8 my-10`}
             >
-              <Link
-                to={"/service-provider-post"}
-                className=" font-extralight text-3xl"
-              >
-                POSTS
+              <Link to={"/refund"} className=" font-extralight text-3xl">
+                REFUNDS
               </Link>
             </div>
             <div className="line w-full h-[0.2px] bg-white"></div>
             <div
               className={`${
-                location.pathname === "/service-provider-order"
-                  ? "text-[#4e97fd]"
-                  : "text-white"
+                location.pathname === "/order" ? "text-[#4e97fd]" : "text-white"
               } nav-link cursor-pointer h-14 flex items-center pl-8 my-10`}
             >
-              <Link
-                to={"/service-provider-order"}
-                className="text-3xl font-extralight"
-              >
+              <Link to={"/order"} className="text-3xl font-extralight">
                 ORDERS
               </Link>
+            </div>
+            <div className="line w-full h-[0.2px] bg-white"></div>
+            <div
+              className={`${
+                location.pathname === "/accounts"
+                  ? "text-[#4e97fd]"
+                  : "text-white"
+              } nav-link cursor-pointer h-14 flex items-center pl-8 my-10`}
+            >
+              <Link to={"/accounts"} className="text-3xl font-extralight">
+                ACCOUNTS
+              </Link>
+            </div>
+            <div className="line w-full h-[0.2px] bg-white"></div>
+            <div
+              className={`text-white nav-link cursor-pointer h-14 flex items-center pl-8 my-10`}
+              onClick={handleSignOut}
+            >
+              <span className="text-3xl font-extralight">LOGOUT</span>
             </div>
             <div className="line w-full h-[0.2px] bg-white"></div>
           </div>

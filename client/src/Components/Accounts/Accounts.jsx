@@ -47,7 +47,6 @@ const Accounts = () => {
     dispatch(clearErrors());
     dispatch(verifyAccountAction(id));
   };
-  console.log(consumers);
 
   return (
     <>
@@ -135,20 +134,6 @@ const Accounts = () => {
                                   {serviceProvider.serviceProviderPhoneNumber}
                                 </h1>
                               </div>
-                            </div>
-                          </div>
-                          <div className="serviceProviderServices mt-3">
-                            <h1 className="font-semibold text-xl">
-                              Service Provider Services
-                            </h1>
-                            <div className="service-provider-services-list flex flex-wrap mt-2">
-                              {serviceProvider.serviceProviderListedServices?.map(
-                                (service) => (
-                                  <div className="service-provider-service-item bg-[#dadada] mx-2 px-4 py-2 mt-2 lg:mt-0 rounded-sm">
-                                    <h1>{service.service.serviceName}</h1>
-                                  </div>
-                                )
-                              )}
                             </div>
                           </div>
                           <div className="serviceProviderWorkingHours mt-3">

@@ -30,7 +30,7 @@ const Order = () => {
             )}
             {!loadOrdersLoading && orders?.length > 0 ? (
               orders.map((order) => (
-                <div className="order card my-8 w-11/12 lg:w-6/12 xl:w-4/12 p-2">
+                <div className="order card my-8 w-11/12 lg:w-6/12 xl:w-5/12 p-2">
                   <div className="consumer-information p-4 bg-[#dadada] shadow-xl rounded-xl ">
                     <div className="order-by flex items-center gap-3">
                       <h1 className="p-2 bg-white text-xs rounded-2xl text-black basis-[34%] lg:basis-[24%] xl:basis-[14%] text-center">
@@ -52,17 +52,17 @@ const Order = () => {
                         </div>
                         <div>
                           <h1 className="xl:text-2xl lg:text-xl font-bold font-serif text-[#4e97fd]">
-                            {order.serviceOrderBy.consumerFullName.slice(0, 15)}{" "}
+                            {order.serviceOrderBy.consumerFullName.slice(0, 25)}{" "}
                             {order.serviceOrderBy.consumerFullName.length >
-                              15 && "..."}
+                              25 && "..."}
                           </h1>
                           <div className="">
                             <h1 className="text-xs xl:text-lg lg:text-sm">
                               <span className="font-semibold text-sm xl:text-lg lg:text-sm">
                                 Email:
                               </span>{" "}
-                              {order.serviceOrderBy.consumerEmail.slice(0, 21)}{" "}
-                              {order.serviceOrderBy.consumerEmail.length > 21 &&
+                              {order.serviceOrderBy.consumerEmail.slice(0, 35)}{" "}
+                              {order.serviceOrderBy.consumerEmail.length > 35 &&
                                 "..."}
                             </h1>
                             <h1 className="text-xs xl:text-lg lg:text-sm">
