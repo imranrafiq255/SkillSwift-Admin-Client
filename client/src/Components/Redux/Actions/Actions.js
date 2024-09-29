@@ -171,6 +171,7 @@ const loadAllOrdersAction = () => async (dispatch) => {
   try {
     dispatch({ type: "LOAD_ORDERS_REQUEST" });
     const response = await axios.get("/api/v1/admin/load-all-orders");
+
     dispatch({
       type: "LOAD_ORDERS_SUCCESS",
       payload: response.data.orders,

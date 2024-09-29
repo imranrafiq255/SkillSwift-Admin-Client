@@ -51,6 +51,7 @@ const Refund = () => {
   const rejectRefundHandler = (id) => {
     dispatch(rejectRefundAction(id));
   };
+
   return (
     <>
       <Toaster />
@@ -63,7 +64,7 @@ const Refund = () => {
             <h1 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-[#4e97fd]">
               Refund Management
             </h1>
-            <div className="refunds">
+            <div className="refunds flex flex-wrap gap-4">
               {refundLoading ? (
                 <div className="flex justify-center items-center h-full">
                   <div className="spinner-border" role="status">
@@ -123,7 +124,11 @@ const Refund = () => {
                       </h3>
                       <p className="text-gray-600">
                         <span className="font-medium">Refund Amount:</span>{" "}
-                        {"Rs " + refund?.refundAmount}
+                        {"Rs " +
+                          (refund?.order?.servicePost?.servicePostPrice *
+                            refund?.refundAmountPercentage) /
+                            100 +
+                          " Partial Amount"}
                       </p>
                       <p className="text-gray-600">
                         <span className="font-medium">Refund Reason:</span>{" "}

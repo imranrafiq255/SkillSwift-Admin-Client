@@ -14,6 +14,7 @@ const Order = () => {
     dispatch(clearErrors());
     dispatch(loadAllOrdersAction());
   }, [dispatch]);
+  console.log(orders);
 
   return (
     <>
@@ -96,7 +97,7 @@ const Order = () => {
                           <h1 className="text-black text-xs">Service Name</h1>
                         </div>
                         <h1 className="w-40">
-                          {order.servicePost.service.serviceName}
+                          {order?.servicePost?.serviceName}
                         </h1>
                       </div>
                       <div className="flex gap-3 items-center message">
@@ -105,7 +106,7 @@ const Order = () => {
                             Service message
                           </h1>
                         </div>
-                        <h1>{order.servicePost.servicePostMessage}</h1>
+                        <h1>{order?.servicePost?.servicePostMessage}</h1>
                       </div>
                       <div className="flex gap-3 items-center schedule mt-4">
                         <div className="order-name bg-white inline-block py-2 px-4 rounded-lg">
