@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Logo from "../../Assets/skillswiftLogo.svg";
 import {
   adminSignOutAction,
   clearErrors,
@@ -50,6 +51,7 @@ const Header = () => {
     dispatch(clearErrors());
     dispatch(adminSignOutAction());
   };
+
   return (
     <>
       <div
@@ -69,11 +71,7 @@ const Header = () => {
               />
             </div>
             <div className="mr-10 lg:mr-28 flex lg:justify-center justify-end items-center">
-              <img
-                src={require("../../Assets/puma-logo.png")}
-                alt=""
-                className="w-20 h-14"
-              />
+              <img src={Logo} alt="" className="w-20 h-20" />
             </div>
           </div>
           <div className="logo-left hidden lg:w-5/12 lg:flex justify-end">

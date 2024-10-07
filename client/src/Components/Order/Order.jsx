@@ -81,7 +81,7 @@ const Order = () => {
                         <h1 className="text-white">Address</h1>
                       </div>
                       <h1 className="mt-3">
-                        {order.serviceOrderBy.consumerAddress}
+                        {order?.serviceOrderBy?.consumerAddress}
                       </h1>
                     </div>
                     <div className="line w-[100%] h-[1px] bg-white my-4"></div>
