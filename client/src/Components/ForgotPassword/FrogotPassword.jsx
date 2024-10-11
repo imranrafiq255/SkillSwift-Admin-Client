@@ -38,12 +38,14 @@ const ForgotPassword = () => {
       if (error) {
         console.log(error);
         handleShowFailureToast(error);
+        dispatch(clearErrors());
       } else if (message) {
         console.log(message);
+        dispatch(clearErrors());
         navigate("/send-email", { state: { message } });
       }
     }
-  }, [message, loading, error, navigate]);
+  }, [message, loading, error, navigate, dispatch]);
   return (
     <>
       <Toaster />

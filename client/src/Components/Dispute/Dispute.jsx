@@ -10,6 +10,7 @@ import Footer from "../Footer/Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import {
   approveDisputeAction,
+  clearErrors,
   loadDisputesAction,
   rejectDisputeAction,
 } from "../Redux/Actions/Actions.js";
@@ -34,7 +35,6 @@ const Home = () => {
       disputeResolution: Yup.string().required("Resolution is required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       if (approveId) {
         dispatch(approveDisputeAction(approveId, values));
         formik.resetForm();
@@ -61,6 +61,7 @@ const Home = () => {
     }
   }, [location.pathname, toastMessage, hasToastShown, navigate]);
   useEffect(() => {
+    dispatch(clearErrors());
     dispatch(loadDisputesAction());
   }, [dispatch]);
   useEffect(() => {
@@ -68,11 +69,13 @@ const Home = () => {
       handleShowFailureToast(approveError);
       setApproveId(null);
       setRejectId(null);
+      dispatch(clearErrors());
     } else if (approveMessage) {
       handleShowSuccessToast(approveMessage);
       setApproveId(null);
       setRejectId(null);
       dispatch(loadDisputesAction());
+      dispatch(clearErrors());
     }
   }, [approveError, approveMessage, dispatch]);
   useEffect(() => {
@@ -80,11 +83,13 @@ const Home = () => {
       handleShowFailureToast(rejectError);
       setApproveId(null);
       setRejectId(null);
+      dispatch(clearErrors());
     } else if (rejectMessage) {
       handleShowSuccessToast(rejectMessage);
       dispatch(loadDisputesAction());
       setApproveId(null);
       setRejectId(null);
+      dispatch(clearErrors());
     }
   }, [rejectError, rejectMessage, dispatch]);
   return (
@@ -101,7 +106,7 @@ const Home = () => {
                 Dispute Management
               </h1>
               <div className="dispute-container flex justify-center my-5">
-                <div className="dispute-sub-container w-full lg:w-10/12 xl:w-8/12 flex flex-wrap gap-5">
+                <div className="dispute-sub-container w-full lg:w-10/12 xl:w-8/12 flex flex-wrap">
                   {disputeLoader && (
                     <div>
                       <RingLoader />

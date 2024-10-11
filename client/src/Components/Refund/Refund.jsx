@@ -32,23 +32,29 @@ const Refund = () => {
   useEffect(() => {
     if (!resolveLoading && resolveError) {
       handleShowFailureToast(resolveError);
+      dispatch(clearErrors());
     } else if (!resolveLoading && resolveMessage) {
       handleShowSuccessToast(resolveMessage);
+      dispatch(clearErrors());
       dispatch(loadRefundsAction());
     }
   }, [dispatch, resolveError, resolveMessage, resolveLoading]);
   useEffect(() => {
     if (!rejectLoading && rejectError) {
       handleShowFailureToast(rejectError);
+      dispatch(clearErrors());
     } else if (rejectMessage) {
       handleShowSuccessToast(rejectMessage);
+      dispatch(clearErrors());
       dispatch(loadRefundsAction());
     }
   }, [dispatch, rejectError, rejectMessage, rejectLoading]);
   const resolveRefundHandler = (id) => {
+    dispatch(clearErrors());
     dispatch(resolveRefundAction(id));
   };
   const rejectRefundHandler = (id) => {
+    dispatch(clearErrors());
     dispatch(rejectRefundAction(id));
   };
 

@@ -38,8 +38,10 @@ const Accounts = () => {
   useEffect(() => {
     if (!accountLoading && accountMessage) {
       handleShowSuccessToast(accountMessage);
+      dispatch(clearErrors());
       dispatch(loadAllServiceProvidersAction());
     } else if (!accountLoading && accountError) {
+      dispatch(clearErrors());
       handleShowFailureToast(accountError);
     }
   }, [dispatch, accountLoading, accountError, accountMessage]);

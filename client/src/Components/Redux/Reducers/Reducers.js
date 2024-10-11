@@ -18,6 +18,8 @@ const signInReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.error = null;
+        state.message = null;
+        state.loading = false;
       });
   }
 );
@@ -40,6 +42,8 @@ const loadCurrentAdminReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.adminError = null;
+        state.adminData = null;
+        state.adminLoading = false;
       });
   }
 );
@@ -62,6 +66,8 @@ const resetPasswordReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.error = null;
+        state.message = null;
+        state.loading = false;
       });
   }
 );
@@ -84,6 +90,8 @@ const changePasswordReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.error = null;
+        state.message = null;
+        state.loading = false;
       });
   }
 );
@@ -106,6 +114,8 @@ const loadDisputesReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.disputeError = null;
+        state.disputes = null;
+        state.disputeLoader = false;
       });
   }
 );
@@ -128,6 +138,8 @@ const approveDisputeReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.approveError = null;
+        state.approveMessage = null;
+        state.approveLoading = false;
       });
   }
 );
@@ -150,6 +162,8 @@ const rejectDisputeReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.rejectError = null;
+        state.rejectMessage = null;
+        state.rejectLoading = false;
       });
   }
 );
@@ -172,6 +186,8 @@ const resolveRefundReducer = createReducer(
       })
       .addCase("CLEAR_RESOLVE_ERRORS", (state, action) => {
         state.resolveError = null;
+        state.resolveMessage = null;
+        state.resolveLoading = false;
       });
   }
 );
@@ -194,6 +210,8 @@ const rejectRefundReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.rejectError = null;
+        state.rejectMessage = null;
+        state.rejectLoading = false;
       });
   }
 );
@@ -216,6 +234,8 @@ const loadRefundsReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.refundError = null;
+        state.refunds = null;
+        state.refundLoading = false;
       });
   }
 );
@@ -238,6 +258,8 @@ const loadAllOrdersReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.loadOrdersError = null;
+        state.orders = null;
+        state.loadOrdersLoading = false;
       });
   }
 );
@@ -264,6 +286,8 @@ const loadAllServiceProvidersReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.serviceProviderError = null;
+        state.serviceProviders = null;
+        state.serviceProviderLoading = false;
       });
   }
 );
@@ -286,6 +310,8 @@ const loadAllConsumersReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.consumerError = null;
+        state.consumers = null;
+        state.accountLoading = false;
       });
   }
 );
@@ -308,6 +334,8 @@ const verifyAccountReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.accountError = null;
+        state.accountMessage = null;
+        state.accountLoading = false;
       });
   }
 );
@@ -330,6 +358,8 @@ const adminSignOutReducer = createReducer(
       })
       .addCase("CLEAR_ERRORS", (state, action) => {
         state.signOutError = null;
+        state.signOutMessage = null;
+        state.signOutLoading = false;
       });
   }
 );

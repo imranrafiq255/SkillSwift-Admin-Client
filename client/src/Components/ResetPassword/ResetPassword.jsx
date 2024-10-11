@@ -59,12 +59,14 @@ const ResetPassword = () => {
       if (error) {
         console.log(error);
         handleShowFailureToast(error);
+        dispatch(clearErrors());
       } else if (message) {
         console.log(message);
+        dispatch(clearErrors());
         navigate("/sign-in", { state: { message } });
       }
     }
-  }, [message, error, navigate, loading]);
+  }, [message, error, navigate, loading, dispatch]);
 
   return (
     <>
