@@ -63,7 +63,7 @@ const ResetPassword = () => {
       } else if (message) {
         console.log(message);
         dispatch(clearErrors());
-        navigate("/sign-in", { state: { message } });
+        window.location.href = `/sign-in?message=${message}`;
       }
     }
   }, [message, error, navigate, loading, dispatch]);
