@@ -44,7 +44,7 @@ const Order = () => {
                         <div className=" p-[2px] border-[1px] border-slate-600 rounded-full">
                           <img
                             src={
-                              order.serviceOrderBy.consumerAvatar ||
+                              order?.serviceOrderBy?.consumerAvatar ||
                               require("../../Assets/avatar.png")
                             }
                             alt=""
@@ -53,8 +53,11 @@ const Order = () => {
                         </div>
                         <div>
                           <h1 className="xl:text-2xl lg:text-xl font-bold font-serif text-[#4e97fd]">
-                            {order.serviceOrderBy.consumerFullName.slice(0, 25)}{" "}
-                            {order.serviceOrderBy.consumerFullName.length >
+                            {order?.serviceOrderBy?.consumerFullName?.slice(
+                              0,
+                              25
+                            )}{" "}
+                            {order?.serviceOrderBy?.consumerFullName?.length >
                               25 && "..."}
                           </h1>
                           <div className="">
@@ -62,15 +65,18 @@ const Order = () => {
                               <span className="font-semibold text-sm xl:text-lg lg:text-sm">
                                 Email:
                               </span>{" "}
-                              {order.serviceOrderBy.consumerEmail.slice(0, 35)}{" "}
-                              {order.serviceOrderBy.consumerEmail.length > 35 &&
-                                "..."}
+                              {order?.serviceOrderBy?.consumerEmail?.slice(
+                                0,
+                                35
+                              )}{" "}
+                              {order?.serviceOrderBy?.consumerEmail?.length >
+                                35 && "..."}
                             </h1>
                             <h1 className="text-xs xl:text-lg lg:text-sm">
                               <span className="font-semibold text-xs xl:text-lg lg:text-sm">
                                 Phone:
                               </span>{" "}
-                              {order.serviceOrderBy.consumerPhoneNumber}
+                              {order?.serviceOrderBy?.consumerPhoneNumber}
                             </h1>
                           </div>
                         </div>
